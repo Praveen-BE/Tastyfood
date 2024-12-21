@@ -1,11 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-const heading = React.createElement(
-  "h1",
-  { className: "heading", xyz: "abc" },
-  "Hello World from React !!!"
-);
+// const heading = React.createElement(
+//   "h1",
+//   { className: "heading", xyz: "abc" },
+//   "Hello World from React !!!"
+// );
+const heading = <h1 className="heading">Namste React Using JSX</h1>;
 // const parent = React.createElement(
 //   "div",
 //   { id: "parent" },

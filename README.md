@@ -154,9 +154,10 @@ we see this episode our own create react app.
 
 ## 3. Laying the Foundation
 
+<details><summary>Read</summary>
+
 ### part-1
 
-<>
 npx parcel index.html this is lengthy
 
 we short command so in package.json
@@ -220,3 +221,147 @@ jsx- is not HTML in JS
 - Everything is different 😂
 
 JSX - HTML like or XML - like syntex.
+
+We code for Humans(developers) then Machine.
+
+in browser console
+
+```base
+const number = 8;
+```
+
+```base
+const heading = <h1 className="heading" tabIndex={1}>Namste React Using JSX</h1>;
+```
+
+js engine does not understand jsx. But js engine understand Ecma Script.
+
+But how jsx work in my code
+
+- Because of Parcel
+- Even before the code goes to the js engine it is transpiled.
+  and JS engine receive the code the Browser can understand.
+- parcel is like manager in that it is happening by babel.
+- babel is not create by facebook
+
+JSX => React.createElement => React Element - JS Object => HTML Element(render)
+
+Visit babel website.
+
+- babel worklike abstract syntex tree
+- not only coverting into react element. It is also work ES6 code understands in older browser.
+- lot transpilation
+- npm library (view library)
+- go read doc in babel website.
+
+homework
+
+- how to use imagetag, imagesrc, anchor tag
+
+Extension Akshay use
+
+- prttier - code formatter
+- Bracket pair colorization Toggle
+- Es lint
+- Better comments
+
+### part - 4
+
+Everythin in React are component - True
+
+- header
+- footer
+- title
+- card
+
+Two tyep
+
+- Class based components - OLD way (nobody uses now) (such a pain)
+- Funtional components - New way (99.99% people use)
+
+React funtional component is just a normal javascript function
+
+- Function compont name it First letter capitals
+
+```base
+        const HeadingComponent = () => {
+                return <h1>Namaste React Functional Component</h1>;
+        }
+```
+
+this is functional component.
+
+- a function that return a jsx code is functional components
+- jsx is also react element So, a function that return a React element is React funtional component.
+
+```base
+        root.render(<HeadingComponent/>);
+```
+
+this is syntex that babel understand.
+
+What is Component Composition :-
+
+```base
+const Title = () = (
+        <h1 className="head"> Namaste React </h1>
+)
+        const HeadingComponent = () => {
+                return (<div>
+                <Title>
+                <h1>Namaste React Functional Component</h1>;
+                </div>)
+        }
+        const root = ReactDOM.createRoot(document.getElementById("root"));
+        root.render(<HeadingComponent>);
+```
+
+This is Component composition
+
+- Component used in side Component
+- You Composing two component one in another.
+
+Arrow Function is the Industry Standard.
+
+We can run every piece of Javascript code in that culrybraces in React.
+
+jsx is mix of HTML and Javascript.
+
+```base
+        <div>
+                {// here}
+                <h1>Namaste</h1>
+        </div>
+```
+
+we can put element into jsx or jsx into element function component in react.
+
+if it create loop Browser will crash.
+
+```base
+        const data = api.getData();
+        const HeadingComponent = () => {
+                return (<div>
+                {data}
+                <h1>Namaste React Functional Component</h1>;
+                </div>)
+        }
+```
+
+if api has some malisious codes it will run in browser. It is called cross site script.
+
+It can steal cookies, session value.
+
+Bus JSX takes care of Injection Attacks.
+
+JSX will Escape it.
+
+Sanitizing the data and will pass it.
+
+JSX prevents from cross site script attack for free
+
+What are make web app fast not only React, it has babel, JSX
+
+We don't even Deep dive into React.
+
+</details>
