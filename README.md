@@ -365,3 +365,228 @@ What are make web app fast not only React, it has babel, JSX
 We don't even Deep dive into React.
 
 </details>
+
+## 4. Talk is Cheap show me the code
+
+<details>
+<summary>Read</summary>
+
+### part - 1
+
+We are Going to make food order app
+
+- What should you use in your planning
+- If is a plan is good, code is very easy to write
+
+1. what are you going to build
+2. what are process build
+3. how it would look like
+
+draw a layout of the UI in note
+
+let us do low level design
+
+header
+
+- logo
+- New Item
+- cart
+
+Body
+
+- Search
+- Restaurant Container
+- Restaurant card
+
+footer
+
+- Copyright
+- Links
+- Address
+- Contact
+
+we can't write inline css in JSX. We can only write inline css by Javascript Object.
+
+```base
+        style={{backroundColor: "#f0f0f0"}}
+```
+
+- first curly braces for JS code
+- inner curly braces for JS Object
+
+### part - 2
+
+Props - short form of properties
+
+- at the end of the day a normal argument to the function
+- passing props to component equals to passing argument to the function
+
+```base
+        const RestaurantCard = (props)=>{
+                console.log(props);
+                return (<h3>{props.resName}</h3>);
+        }
+```
+
+```base
+        <RestaurantCard resName="Meghana Foods" cuisins="Briyani, North Indian, Asian"/>
+        <RestaurantCard resName="KFC" cuisins="Burger, FastFood"/>
+```
+
+it will print both of the props
+
+we can write also write like this
+
+```base
+        const RestaurantCard = (resName, cuisins)=>{
+                return (<div>
+                        <h3>{resName}</h3>
+                        <h3>{cuisins}</h3>
+                </div>);
+        }
+```
+
+some cool developer destructure and using like this.
+
+```base
+        const RestaurantCard = (props)=>{
+                const { resName, cuisins } = props;
+                return (<div>
+                        <h3>{resName}</h3>
+                        <h3>{cuisins}</h3>
+                </div>);
+        }
+```
+
+this is just javascript, not react doing this
+
+### Config Driven UI
+
+- The UI chennai has seperate offer, Mumbai has seperate, Kolkatta has seperate some cities don't have offer
+- How UI like that
+
+- Our website Driven by data
+- this is Known as config driven UI
+- If delhi has different courosal My backend api
+- all UI driven by config
+  - Api data is config
+  - -> can be different for delhi
+  - -> can be different for Mumbai
+  - -> Some Plase won't show that UI
+- According to the data comming from backend the UI is changed. This is known as config Driven UI.
+
+Lot of Company Uses It.
+
+can be set Different color of backround for various places.
+
+UI layer, Data layer both of them makes an application
+
+```base
+        const resList = [{
+                data: {
+                        id: 1,
+                        name: "Meghana food",
+                        cuisines: ["Burger", "Biriyani", "American"],
+                        avgRating: 5,
+                        costForTwo: 300,
+                        deliveryTime: "30 minutes",
+                        cloudinary_imageid: "goevzinldbotvpn3xid1"
+                }
+        },
+        {
+                data: {
+                        id: 2,
+                        name: "KFC",
+                        cuisines: ["Burger", "Chicken","American"],
+                        avgRating: 5,
+                        costForTwo: 200,
+                        deliveryTime: "30 minutes",
+                        cloudinary_imageid: "goevzinldbotvpn3xid1"
+                }
+        },
+        {
+                data: { id: 3,
+                        name: "Burger King",
+                        cuisines: ["Burger", "Biriyani"],
+                        avgRating: 5,
+                        costForTwo: 300,
+                        deliveryTime: "20 minutes",
+                        cloudinary_imageid: "goevzinldbotvpn3xid1"
+                }
+        }];
+        <RestaurantCard resData={resList[0]} />
+        <RestaurantCard resData={resList[1]} />
+```
+
+inside of the component
+
+```base
+        const {resData} = props;
+return(<div>
+     <h3>{resData.data.name}</h3>
+     <h3>{resData.data.cuisines.join(", ")}</h3>
+     <h3>{resData.data.avgRating}</h3>
+     <h3>{resData.data.costForTwo/100}</h3>
+     <h3>{resData.data.deliveryTime}</h3>
+</div>)
+
+```
+
+if you put in image in website you need to use CDN,
+
+Swiggy uses res.cloudinary.com
+
+```base
+        <h3>{res.cloudinary.com+ resData.data.cloudinary_imageid}</h3>
+```
+
+when you Build a production readu app you have to write reusable components.
+
+Clean the mess our code write like that cool developer
+
+```base
+const { cloudinary_imageid, name, avgRating, cuisines, costForTwo, deliveryTime } = resData?.data;
+```
+
+Instead of using for(i) we can use map
+
+```base
+        <div>
+                {
+                resList.map((restaurant)=>(<RestaurantCard key={restaurant.data.id} resData={restaurant}>));
+                }
+        </div>
+```
+
+if we put key for iterated element warning will remove
+
+Whenever you are looping anything of anylist you have to use give a key.
+
+Container
+
+- ->1, id 1
+- ->2, id 2
+- ->3, id 3
+
+react optimize it's render cycle
+
+why should key uniquely represent it.
+
+suppose we didn't use key new RestaurantCard came in
+
+If we didn't give key react don't know which RestaurantCard.
+
+So it re-render all component.
+
+it will treat like all RestaurantCard are same.
+
+If you give each of them uniue id
+React now id1, 2,3, 4,5 already there
+
+so give unique key
+
+Never Use Index as Key in react in offical documentation
+
+not using key(not Acceptable) < Index as key (not recommended) < unique id (best practise)
+
+</details>
