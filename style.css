@@ -1,7 +1,15 @@
-h1 {
-  color: red;
-}
-
-.heading1 {
-  color: blue;
+:root {
+  --color1: #ffeef4;
+  --color2: #e4e4d0;
+  --color3: #aec3ae;
+  --color4: #94a684;
+  --color5: #fbfbfb;
+  --headerBg: #ffffff;
+  --footerBg: #ffffff;
+  --primary-text-color: #3d4152;
+  --add-text-color: rgb(27, 166, 144);
+  --filterAndSortTextColor: rgba(2, 6, 12, 0.75);
+  --searchBackroundColor: rgba(2, 6, 12, 0.05);
+  --border-color: rgba(40, 44, 63, 0.1);
+  --bottom-border-color: #d3d3d3;
 }

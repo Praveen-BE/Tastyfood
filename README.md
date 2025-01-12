@@ -590,3 +590,115 @@ Never Use Index as Key in react in offical documentation
 not using key(not Acceptable) < Index as key (not recommended) < unique id (best practise)
 
 </details>
+
+## 5. Let's get Hooked
+
+<details>
+<summary>Read</summary>
+
+Everything React can do, you can do that using normal HTML, CSS, JavaScript then why react?
+
+The beauty of the framework (or) library is makes the developer life is Easy
+
+Writing less code More on the webpage this is the major job of UI, Library, Framework is
+
+react makes your coding experience make fast and optimizing something on the webpage.
+
+The thing hapen very fast
+
+### part-1
+
+Before that Hooked
+
+Best practise is seperate files for seperate component
+
+All the source code keep on the src folder
+
+(we can code without src folder but)
+
+best practise is make seperate folder for every component
+
+- first human then machine
+
+your project have thousands of components
+
+>        >src
+>           >components
+>           App.js
+
+- -> it is not mandatory
+- -> it is upon the developers, project Maintainers, upon to You
+
+It is folled in Industry
+
+> React folder Structure
+
+visit website and research
+
+- -> Grouping by features
+- -> Grouping by file type
+- -> Avoid too much nesting
+- -> Don't Over think it
+
+>        >src
+>           >components
+>              Body.js
+>              Header.jsx
+>           App.js
+
+we can use jsx extension
+
+Before import Header components from App.js we want to Export Header from Header.js file
+
+Always Export First and Import next
+
+> import Header from "./components/Header.js";
+
+even if you didn't put js extension here it will work
+
+- Whenever you have hardcoded data you never keep in components
+- This is Industry Standard
+- URL is also Hard coded data image logo also
+
+Where should keep that
+
+>       >Utils
+
+some people use common folder
+
+>       >utils
+>         constant.js
+>         mockData.js
+
+it is default export
+
+```base
+        export default resList;
+```
+
+it is default import
+
+```base
+        export default resList;
+```
+
+it is named export
+
+```base
+        export const CDN_URL = "url";
+```
+
+it is named import
+
+```base
+        import { CDN_URL } from "./filepath"
+```
+
+- Named export can do multiple times
+- default export can only do one time per file
+
+### part - 2
+
+</details>
+
+I will Write Notes Later First I need to Complete Project for my portfolio.
