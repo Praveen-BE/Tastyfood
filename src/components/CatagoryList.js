@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ItemCard, { ItemCardAdd } from "./ItemCard.js";
 import Shimmer from "./Shimmer";
 import { DropDownIocn } from "../utils/useSvgElements";
 import classNames from "classnames";
 
 const CatagoryList = ({
+  firstTitle,
   data,
   showItem,
   setShowIndex,
@@ -39,11 +40,27 @@ const CatagoryList = ({
     }
   };
 
+  const clickEventFirstElement = () => {
+    if (firstTitle == "Recommended") {
+      // const button = document.querySelector("#Recommended");
+      // console.log(button);
+      // button.addEventListener("click", function () {
+      //   handleAccordian();
+      // });
+      // button.click();
+      setClickCount(clickCount + 1);
+    }
+  };
+
+  useEffect(() => {
+    clickEventFirstElement();
+  }, []);
+
   return (
-    <div className="">
+    <div id={title}>
       {categories ? (
         <>
-          <div className="flex justify-between items-center m-4 px-4 py-1 rounded-xl">
+          <div className="menuListSets flex justify-between items-center m-4 px-4 py-1 rounded-xl">
             <h1 className="text-[3.5rem] font-display font-semibold py-2">
               {title}
             </h1>
@@ -54,6 +71,7 @@ const CatagoryList = ({
           <div className="m-8">
             {categories.map((data, index) => (
               <CatagoryList
+                id={data?.card?.card?.title || data?.title}
                 key={data?.title}
                 data={data}
                 showItem={false}
@@ -70,7 +88,10 @@ const CatagoryList = ({
         <>
           <div
             onClick={() => handleAccordian()}
-            className="flex justify-between items-center m-4 px-4 py-1 border-2 shadow-xl rounded-xl"
+            className={classNames({
+              innerMenuListSets: title == "Reccommended" ? true : false,
+              "flex justify-between items-center m-4 px-4 py-1 border-2 shadow-xl rounded-xl": true,
+            })}
           >
             <h1 className="text-[3.5rem] font-display font-semibold py-2">
               {title}

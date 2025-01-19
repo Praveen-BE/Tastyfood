@@ -13,7 +13,7 @@ import { addPage } from "../utils/pageSlice";
 const HomePage = () => {
   const pageNo = useSelector((store) => store.page.pageNo);
   const restaurants = useSelector((store) => store.restaurant.restarantList);
-  console.log(pageNo);
+  // console.log(pageNo);
   const dispatch = useDispatch();
   useEffect(() => {
     if (restaurants == null) {
@@ -27,7 +27,7 @@ const HomePage = () => {
   // }, []);
 
   const restaurantListFetch = async () => {
-    console.log(pageNo);
+    // console.log(pageNo);
     const data = await fetch("http://localhost:3333/restuarantList/" + pageNo);
     const json = await data.json();
     // console.log(json);

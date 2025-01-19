@@ -14,6 +14,7 @@ import {
   RouterProvider,
   Routes,
 } from "react-router-dom";
+import CartPage from "./components/CartPage.js";
 
 const App = () => {
   const router = createBrowserRouter(
@@ -29,6 +30,10 @@ const App = () => {
           {
             path: "/menu/:id",
             element: <MenuListPage />,
+          },
+          {
+            path: "/cart",
+            element: <CartPage />,
           },
         ],
       },

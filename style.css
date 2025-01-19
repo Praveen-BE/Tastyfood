@@ -13,3 +13,36 @@
   --border-color: rgba(40, 44, 63, 0.1);
   --bottom-border-color: #d3d3d3;
 }
+
+.ShimmerEffect {
+  margin-top: -5%;
+  /* background: #250101; */
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(135deg, #f6f6f6 8%, #f0f0f0 18%, #f6f6f6 33%);
+  animation-name: shimmer;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.ShimmerEffectSlow {
+  margin-top: -5%;
+  /* background: #250101; */
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(135deg, #f6f6f6 8%, #f0f0f0 18%, #f6f6f6 33%);
+  animation-name: shimmer;
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1200px 0;
+  }
+  100% {
+    background-position: 1200px 0;
+  }
+}

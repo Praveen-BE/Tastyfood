@@ -3,18 +3,23 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { addMenuData, addRestaurantName } from "../utils/restaurantMenuSlice";
 import CatagoryList from "./CatagoryList";
+import ShimmerMenuPage from "./ShimmerMenuPage";
 
 const MenuListPage = () => {
   const [showIndex, setShowIndex] = useState(null);
   const menuData = useSelector((store) => store.restaurantMenu.menuData);
+  // const menuData = null;
   const restaurantName = useSelector(
     (store) => store.restaurantMenu.restaurantName
   );
   const dispatch = useDispatch();
   const { id } = useParams();
+
   useEffect(() => {
     menuListDataFetchAPI();
+    setShowIndex(0);
   }, []);
+
   const menuListDataFetchAPI = async () => {
     const data = await fetch("http://localhost:3333/restuarantMenu/" + id);
     const json = await data.json();
@@ -34,23 +39,27 @@ const MenuListPage = () => {
     dispatch(addMenuData(array));
     dispatch(addRestaurantName(text));
   };
+  if (menuData.length == 0) return <ShimmerMenuPage />;
   return (
     <div className="m-0 p-0 w-full">
       <h1 className="text-center w-full text-[3rem] font-display">
         {restaurantName}
       </h1>
-      {menuData.map((data, index) => (
-        <CatagoryList
-          key={data?.card?.card?.title || data?.title}
-          data={data}
-          showItem={index == showIndex ? true : false}
-          setShowIndex={() => setShowIndex(index)}
-          nullIndex={() => setShowIndex(null)}
-          innerIndex={null}
-          innerShowItem={null}
-          nullInnerShowItem={null}
-        />
-      ))}
+      <>
+        {menuData.map((data, index) => (
+          <CatagoryList
+            firstTitle={data?.card?.card?.title || data?.title}
+            key={data?.card?.card?.title || data?.title}
+            data={data}
+            showItem={index == showIndex ? true : false}
+            setShowIndex={() => setShowIndex(index)}
+            nullIndex={() => setShowIndex(null)}
+            innerIndex={null}
+            innerShowItem={null}
+            nullInnerShowItem={null}
+          />
+        ))}
+      </>
     </div>
   );
 };
