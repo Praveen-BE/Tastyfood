@@ -7,7 +7,7 @@ const CartItemCard = ({ data }) => {
   // const [count, setCount] = useState(1);
   const priceObject = useSelector((store) => store?.price?.itemsPrice);
   const dispatch = useDispatch();
-  console.log(data);
+  // console.log(data);
   const { id } = data?.card?.info;
   const decrease = () => {
     if (priceObject[id].count == 1) {

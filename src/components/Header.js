@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import {
+  LeftDirectionArrow,
   LocationSymbol,
   ProfileIcon,
   ShopingCartIcon,
@@ -23,8 +24,9 @@ const Header = () => {
       </div>
       <div onClick={() => navigate(-1)}>
         <div className="flex pt-4 pl-4 justify-center items-center">
-          <h1 className="text-[3rem] font-black font-display text-[--primary-text-color]">
-            {"<-"} Other
+          <LeftDirectionArrow />
+          <h1 className="ml-2 text-[3rem] font-black font-display text-[--primary-text-color]">
+            Other
           </h1>
           <div className="w-8 h-8 ml-2 border-2 border-black rounded-full flex items-center justify-center">
             <LocationSymbol />

@@ -39,7 +39,7 @@ const HomePage = () => {
   };
 
   const AddRestroFetch = async (nextpageNo) => {
-    console.log(nextpageNo);
+    // console.log(nextpageNo);
     const data = await fetch(
       "http://localhost:3333/restuarantList/" + nextpageNo
     );

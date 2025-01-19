@@ -3,7 +3,7 @@ import Shimmer, { LineShimmerFull, LineShimmerHalf } from "./Shimmer";
 
 const ShimmerRestaCard = () => {
   return (
-    <div className="w-[410px] h-[500px] rounded-[32px] ml-4 flex flex-col p-4 bg-red-50">
+    <div className="w-[410px] h-[500px] rounded-[32px] ml-4 flex flex-col p-4 bg-red-100">
       <Shimmer />
       <LineShimmerFull />
       <LineShimmerFull />

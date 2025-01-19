@@ -1,10 +1,10 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 
 import Body from "./components/Body";
 
 import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
-import MenuListPage from "./components/MenuListPage";
+// import MenuListPage from "./components/MenuListPage";
 import HomePage from "./components/HomePage.js";
 // import { BrowserRouter } from "react-router-dom";
 import {
@@ -15,6 +15,10 @@ import {
   Routes,
 } from "react-router-dom";
 import CartPage from "./components/CartPage.js";
+import ShimmerMenuPage from "./components/ShimmerMenuPage.js";
+import ShimmerResListPage from "./components/ShimmerResListPage.js";
+const MenuListPage = lazy(() => import("./components/MenuListPage"));
+const CartPage = lazy(() => import("./components/CartPage.js"));
 
 const App = () => {
   const router = createBrowserRouter(
@@ -25,15 +29,27 @@ const App = () => {
         children: [
           {
             path: "/",
-            element: <HomePage />,
+            element: (
+              <Suspense fallback={<ShimmerResListPage />}>
+                <HomePage />
+              </Suspense>
+            ),
           },
           {
             path: "/menu/:id",
-            element: <MenuListPage />,
+            element: (
+              <Suspense fallback={<ShimmerMenuPage />}>
+                <MenuListPage />
+              </Suspense>
+            ),
           },
           {
             path: "/cart",
-            element: <CartPage />,
+            element: (
+              <Suspense fallback={<ShimmerMenuPage />}>
+                <CartPage />
+              </Suspense>
+            ),
           },
         ],
       },

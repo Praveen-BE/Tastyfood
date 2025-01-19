@@ -26,8 +26,8 @@ const MenuListPage = () => {
     const menuData =
       json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
     const { text } = json?.data?.cards[0]?.card?.card;
-    console.log(text);
-    console.log(menuData);
+    // console.log(text);
+    // console.log(menuData);
     const array = menuData.filter(
       (item) =>
         item?.card?.card?.["@type"] ==
@@ -35,7 +35,7 @@ const MenuListPage = () => {
         item?.card?.card?.["@type"] ==
           "type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory"
     );
-    console.log(array);
+    // console.log(array);
     dispatch(addMenuData(array));
     dispatch(addRestaurantName(text));
   };

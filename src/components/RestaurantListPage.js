@@ -1,9 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import Shimmer, { LineShimmerFull, LineShimmerHalf } from "./Shimmer";
+
 import RestaurantCard from "./RestaurantCard";
 import { Link } from "react-router-dom";
-import ShimmerRestaCard from "./ShimmerRestaCard";
+import ShimmerResListPage from "./ShimmerResListPage";
 
 const RestaurantListPage = () => {
   const restaurantListData = useSelector(
@@ -11,15 +11,7 @@ const RestaurantListPage = () => {
   );
   // const restaurantListData = null;
   if (restaurantListData == null) {
-    return (
-      <div className="ml-4 grid grid-cols-2 gap-10 p-4">
-        <ShimmerRestaCard />
-        <ShimmerRestaCard />
-        <ShimmerRestaCard />
-        <ShimmerRestaCard />
-        <ShimmerRestaCard />
-      </div>
-    );
+    return <ShimmerResListPage />;
   }
 
   return (
