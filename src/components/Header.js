@@ -36,7 +36,7 @@ const Header = () => {
 
       <div className="ml-0 p-4 h-28 flex items-center">
         <div className="relative m-0 p-0 w-20">
-          <div className="absolute -mt-8 ml-10 px-2 py-2 text-3xl  rounded-full text-white bg-[--primary-text-color]">
+          <div className="absolute -mt-8 ml-10 px-2 py-2 text-3xl rounded-full text-white bg-[--primary-text-color]">
             {cartItemCount.length}
           </div>
           <Link to={"/cart"}>

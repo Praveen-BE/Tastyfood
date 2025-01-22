@@ -1,15 +1,17 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import React, { useEffect, useState } from "react";
 import resList from "../utils/mockData";
 import FilterAndSortBar from "./FilterAndSortBar";
-import RestaurantListPage from "./RestaurantListPage";
+// import RestaurantListPage from "./RestaurantListPage";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addRestaurants,
   againAddRestaurants,
+  defaultRestarantList,
 } from "../utils/restaurantListSlice";
 import { addPage } from "../utils/pageSlice";
-
+import ShimmerResListPage from "./ShimmerResListPage";
+const RestaurantListPage = lazy(() => import("./RestaurantListPage"));
 const HomePage = () => {
   const pageNo = useSelector((store) => store.page.pageNo);
   const restaurants = useSelector((store) => store.restaurant.restarantList);
@@ -35,6 +37,7 @@ const HomePage = () => {
       json?.data?.success?.cards[1]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants;
     dispatch(addRestaurants(restaurant));
+    dispatch(defaultRestarantList());
     dispatch(addPage(pageNo + 1));
   };
 
@@ -49,13 +52,16 @@ const HomePage = () => {
       json?.data?.success?.cards[1]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants;
     dispatch(againAddRestaurants(restaurant));
+    dispatch(defaultRestarantList());
     dispatch(addPage(pageNo + 1));
   };
 
   return (
     <div className="pb-40">
       <FilterAndSortBar />
-      <RestaurantListPage />
+      <Suspense fallback={<ShimmerResListPage />}>
+        <RestaurantListPage />
+      </Suspense>
       <div className="w-full p-2 flex justify-center">
         <h1
           className="px-6 py-3 pb-5 text-white text-center text-[50px] rounded-[50px] bg-[--filterAndSortTextColor]"

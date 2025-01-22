@@ -11,6 +11,7 @@ import {
   removeItemAndPriceAndCount,
 } from "../utils/priceSlice";
 import { errorMinusFalse, errorMinusTrue } from "../utils/errorSlice";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const ItemCard = (props) => {
   const { data } = props;
@@ -65,8 +66,8 @@ const ItemCard = (props) => {
         </div>
       </div>
       <div className="w-6/12 mr-8 pr-4">
-        <img
-          className="w-full rounded-[3rem]  h-[28rem] "
+        <LazyLoadImage
+          className="w-full rounded-[3rem] h-[28rem]"
           src={CDN_URL + imageId}
           alt={name + "Image"}
         />
