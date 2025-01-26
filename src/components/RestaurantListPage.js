@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ShimmerResListPage from "./ShimmerResListPage";
 import ShimmerRestaCard from "./ShimmerRestaCard";
+import SearchBar from "./SearchBar";
 const RestaurantCard = lazy(() => import("./RestaurantCard"));
 
 const RestaurantListPage = () => {
@@ -17,15 +18,23 @@ const RestaurantListPage = () => {
   }
 
   return (
-    <div className="ml-4 grid grid-cols-2 gap-10 p-4">
-      {restaurantListData.map((data) => (
-        <Link to={"/menu/" + data?.info?.id} key={data?.info?.id}>
-          <Suspense fallback={<ShimmerRestaCard />}>
-            <RestaurantCard resData={data} />
-          </Suspense>
-        </Link>
-      ))}
-    </div>
+    <>
+      <SearchBar />
+      <div className="ml-14 grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-1">
+        {restaurantListData.map((data) => (
+          <Link
+            className="m-0 w-[410px] md:w-[380px] lg:w-[180px] 
+          flex justify-center items-center rounded-3xl shadow-2xl"
+            to={"/menu/" + data?.info?.id}
+            key={data?.info?.id}
+          >
+            <Suspense fallback={<ShimmerRestaCard />}>
+              <RestaurantCard resData={data} />
+            </Suspense>
+          </Link>
+        ))}
+      </div>
+    </>
   );
 };
 

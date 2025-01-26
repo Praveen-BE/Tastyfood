@@ -8,13 +8,17 @@ import {
   addRestaurants,
   againAddRestaurants,
   defaultRestarantList,
+  searchRestaurantList,
 } from "../utils/restaurantListSlice";
 import { addPage } from "../utils/pageSlice";
 import ShimmerResListPage from "./ShimmerResListPage";
 const RestaurantListPage = lazy(() => import("./RestaurantListPage"));
 const HomePage = () => {
   const pageNo = useSelector((store) => store.page.pageNo);
+  const searchBar = useSelector((store) => store.page.searchBar);
   const restaurants = useSelector((store) => store.restaurant.restarantList);
+  const searchText = useSelector((store) => store.page.searchText);
+
   // console.log(pageNo);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -52,7 +56,11 @@ const HomePage = () => {
       json?.data?.success?.cards[1]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants;
     dispatch(againAddRestaurants(restaurant));
-    dispatch(defaultRestarantList());
+    if (searchBar) {
+      dispatch(searchRestaurantList(searchText));
+    } else {
+      dispatch(defaultRestarantList());
+    }
     dispatch(addPage(pageNo + 1));
   };
 

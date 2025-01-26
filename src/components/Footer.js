@@ -11,7 +11,7 @@ const Footer = () => {
     dispatch(toggleSearchBar());
   };
   return (
-    <div className="fixed bottom-0 m-0 p-0 w-screen h-28 flex bg-[--footerBg]">
+    <div className="fixed lg:hidden bottom-0 m-0 p-0 w-screen h-28 flex bg-[--footerBg]">
       <div className="w-6/12 flex justify-center items-center">
         <Link to={"/"}>
           <img

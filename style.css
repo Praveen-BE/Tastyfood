@@ -46,3 +46,60 @@
     background-position: 1200px 0;
   }
 }
+.nonActive {
+  display: none;
+}
+.parentSortBy {
+  display: block;
+}
+.parentFilter {
+  display: block;
+}
+
+.childSortBy {
+  display: none;
+}
+.childFilter {
+  display: none;
+}
+
+.parentSortBy:hover .childSortBy {
+  display: block;
+}
+.parentFilter:hover .childFilter {
+  display: block;
+}
+
+.parentSortBy:active .childSortBy {
+  display: block;
+}
+.parentFilter:active .childFilter {
+  display: block;
+}
+
+.initialFilterPage {
+  animation: filterInitial 0.5s ease-in-out forwards;
+}
+
+@keyframes filterInitial {
+  0% {
+    bottom: 0;
+    transform: translateY(100%);
+  }
+  100% {
+    bottom: 0;
+  }
+}
+
+.filterPageEnd {
+  animation: filterEnd 0.5s forwards;
+}
+
+@keyframes filterEnd {
+  0% {
+    transform: translate(0%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}

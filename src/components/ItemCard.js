@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { CDN_URL } from "../utils/constant";
 import classNames from "classnames";
-import { StarIcon } from "../utils/useSvgElements";
+import { BigStarIcon, StarIcon } from "../utils/useSvgElements";
 import { useDispatch, useSelector } from "react-redux";
 import { addCartItem, removeCartItem } from "../utils/cartSlice";
 import {
@@ -23,21 +23,21 @@ const ItemCard = (props) => {
     setMore(true);
   };
   return (
-    <div className="mx-4 pt-24 pb-28 flex">
+    <div className="mx-4 pt-24 pb-28 lg:pt-10 lg:pb-10 flex">
       <div className="w-6/12 pl-4">
         <img
           src="https://www.pngitem.com/pimgs/m/151-1515150_veg-icon-png-circle-transparent-png.png"
           alt="vegIcon"
-          className="w-[3rem]"
+          className="w-[3rem] lg:w-[2rem]"
         />
-        <h1 className="font-display font-black text-[--primary-text-color] text-[3.5rem]">
+        <h1 className="font-display font-black text-[--primary-text-color] text-[3.5rem] lg:text-[2rem]">
           {name}
         </h1>
-        <h2 className="font-display text-[3rem]">
+        <h2 className="font-display text-[3rem] lg:text-[2rem]">
           ₹ {defaultPrice ? defaultPrice / 100 : price / 100}
         </h2>
-        <h3 className="font-display text-[3rem] flex items-center  text-[--primary-text-color]">
-          <StarIcon color={"red"} />
+        <h3 className="font-display text-[3rem] lg:text-[2rem] flex items-center  text-[--primary-text-color]">
+          <BigStarIcon color={"red"} />
           {ratings?.aggregatedRating?.rating} (
           {ratings?.aggregatedRating?.ratingCountV2})
         </h3>
@@ -45,7 +45,7 @@ const ItemCard = (props) => {
           <p
             onClick={() => showMoreText()}
             className={classNames({
-              "describeText font-display text-[2.5rem] w-full text-wrap text-ellipsis  text-[--primary-text-color]": true,
+              "describeText font-display text-[2.5rem] lg:text-[2rem] w-full text-wrap text-ellipsis  text-[--primary-text-color]": true,
               "line-clamp-2": !more,
             })}
           >
@@ -57,7 +57,7 @@ const ItemCard = (props) => {
             ) : (
               <span
                 onClick={() => showMoreText()}
-                className="font-display text-[2.5rem] mr-4 font-black text-[--primary-text-color]"
+                className="font-display text-[2.5rem] lg:text-[2rem] mr-4 font-black text-[--primary-text-color]"
               >
                 more
               </span>
@@ -66,11 +66,13 @@ const ItemCard = (props) => {
         </div>
       </div>
       <div className="w-6/12 mr-8 pr-4">
-        <LazyLoadImage
-          className="w-full rounded-[3rem] h-[28rem]"
-          src={CDN_URL + imageId}
-          alt={name + "Image"}
-        />
+        <div className="relative w-full h-[28rem] lg:h-[20rem] overflow-hidden rounded-[3rem]">
+          <LazyLoadImage
+            className="w-full absolute"
+            src={CDN_URL + imageId}
+            alt={name + "Image"}
+          />
+        </div>
       </div>
     </div>
   );
@@ -89,9 +91,6 @@ export const ItemCardAdd = (ItemCard) => {
       dispatch(addItemAndPriceAndCount({ key: id, value: tempObject }));
     };
     const stringId = id.toString();
-    // console.log(stringId);
-    // const value = ObjectValue.hasOwnProperty(stringId);
-    // console.log(value);
     const decrease = () => {
       if (priceObject[stringId].count == 1) {
         dispatch(errorMinusTrue());
@@ -111,11 +110,12 @@ export const ItemCardAdd = (ItemCard) => {
           <ItemCard {...props} />
           {stringId in priceObject ? (
             <button
-              className="px-0 py-0 absolute top-[30rem] right-[6.75rem]
-           bg-white text-[--add-text-color] text-[3rem] 
+              className="px-0 py-0 absolute 
+            top-[30rem] right-[6.75rem] lg:top-[18rem] lg:right-[5.5rem]
+           bg-white text-[--add-text-color] text-[3rem] lg:text-[2rem]
            text-center font-black rounded-3xl border-[--add-text-color] border-2"
             >
-              <div className="w-[20rem] flex justify-between items-center">
+              <div className="w-[20rem] lg:w-[18rem] flex justify-between items-center">
                 <div
                   onClick={() => decrease()}
                   className="mr-0 px-10 py-5 bg-[--primary-text-color] rounded-l-3xl"
@@ -134,8 +134,8 @@ export const ItemCardAdd = (ItemCard) => {
           ) : (
             <button
               onClick={() => cartAddItem()}
-              className="px-28 py-5 absolute top-[30rem] right-[6.75rem]
-           bg-white text-[--add-text-color] text-[3rem] 
+              className="px-28 py-5 absolute top-[30rem] lg:top-[18rem] right-[6.75rem] lg:right-[5.5rem]
+           bg-white text-[--add-text-color] text-[3rem] lg:text-[2rem]
            text-center font-black rounded-3xl border-[--add-text-color] border-2"
             >
               ADD
@@ -162,8 +162,8 @@ export const ItemCartRemove = (ItemCard) => {
           <ItemCard {...props} />
           <button
             onClick={() => cartRemoveItem()}
-            className="px-20 py-5 absolute top-[30rem] right-[6.5rem]
-           bg-white text-[--add-text-color] text-[3rem] 
+            className="px-20 py-5 absolute top-[30rem] right-[6.5rem] lg:top-[18rem] lg:right-[6.5rem]
+           bg-white text-[--add-text-color] text-[3rem] lg:text-[2rem]
            text-center font-black rounded-3xl border-[--add-text-color] border-2"
           >
             Remove

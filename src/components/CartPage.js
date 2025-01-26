@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ItemCard, { ItemCardAdd, ItemCartRemove } from "./ItemCard";
 import CartItemCard from "./CartItemCard";
@@ -8,6 +8,7 @@ import { emtyCartItem } from "../utils/cartSlice";
 import { emtpyItemCount } from "../utils/priceSlice";
 
 const CartPage = () => {
+  const [messageShow, setMessageShow] = useState(false);
   const dispatch = useDispatch();
   const cartItems = useSelector((store) => store.cart.cartData);
   const cartPrice = useSelector((store) => store.price.itemsPrice);
@@ -20,9 +21,25 @@ const CartPage = () => {
     dispatch(emtyCartItem());
     dispatch(emtpyItemCount());
   };
+  const functionMessageShow = () => {
+    setMessageShow(true);
+    setTimeout(function () {
+      setMessageShow(false);
+    }, 2000);
+  };
   return (
     <div className="m-0 flex flex-col">
       <ErrorMinus />
+      {messageShow && (
+        <>
+          {" "}
+          <div className="absolute top-[2rem] left-[50%] translate-x-[-50%]">
+            <h1 className="bg-[--filterAndSortTextColor] text-white px-10 py-5 font-semibold text-[3rem] rounded-full">
+              Buy Later
+            </h1>
+          </div>
+        </>
+      )}
       {cartItems.length == 0 ? (
         <h1 className="m-0 p-0 text-[3rem] text-center font-display font-bold">
           This Cart is Empty
@@ -48,7 +65,10 @@ const CartPage = () => {
               <h1 className="m-4 text-[3rem] font-display">
                 Total Price : {totalPriceValue} Rs
               </h1>
-              <h1 className="m-4 p-4 w-[10rem] text-center text-[3rem] font-display font-bold bg-green-300 rounded-2xl">
+              <h1
+                onClick={() => functionMessageShow()}
+                className="m-4 p-4 w-[10rem] text-center text-[3rem] font-display font-bold bg-green-300 rounded-2xl"
+              >
                 Buy
               </h1>
             </div>
@@ -70,10 +90,12 @@ const CartPage = () => {
           </div>
         </>
       )}
-      <div>
-        {cartItems.map((data) => (
-          <RemoveCartItemComponent key={data?.card?.info?.id} data={data} />
-        ))}
+      <div className="w-full flex justify-center">
+        <div className="w-full lg:w-9/12">
+          {cartItems.map((data) => (
+            <RemoveCartItemComponent key={data?.card?.info?.id} data={data} />
+          ))}
+        </div>
       </div>
     </div>
   );

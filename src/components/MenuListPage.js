@@ -41,25 +41,27 @@ const MenuListPage = () => {
   };
   if (menuData.length == 0) return <ShimmerMenuPage />;
   return (
-    <div className="m-0 p-0 w-full">
-      <h1 className="text-center w-full text-[3rem] font-display">
-        {restaurantName}
-      </h1>
-      <>
-        {menuData.map((data, index) => (
-          <CatagoryList
-            firstTitle={data?.card?.card?.title || data?.title}
-            key={data?.card?.card?.title || data?.title}
-            data={data}
-            showItem={index == showIndex ? true : false}
-            setShowIndex={() => setShowIndex(index)}
-            nullIndex={() => setShowIndex(null)}
-            innerIndex={null}
-            innerShowItem={null}
-            nullInnerShowItem={null}
-          />
-        ))}
-      </>
+    <div className="lg:w-screen lg:flex lg:justify-center lg:items-center lg:flex-col">
+      <div className="m-0 p-0 w-full lg:w-[50rem]">
+        <h1 className="text-center w-full font-black text-[3rem] lg:text-[2rem] font-display">
+          {restaurantName}
+        </h1>
+        <>
+          {menuData.map((data, index) => (
+            <CatagoryList
+              firstTitle={data?.card?.card?.title || data?.title}
+              key={data?.card?.card?.title || data?.title}
+              data={data}
+              showItem={index == showIndex ? true : false}
+              setShowIndex={() => setShowIndex(index)}
+              nullIndex={() => setShowIndex(null)}
+              innerIndex={null}
+              innerShowItem={null}
+              nullInnerShowItem={null}
+            />
+          ))}
+        </>
+      </div>
     </div>
   );
 };

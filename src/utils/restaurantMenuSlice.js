@@ -9,6 +9,7 @@ const restaurantMenuSlice = createSlice({
   reducers: {
     addMenuData: (state, action) => {
       state.menuData = action.payload;
+      // state.menuData = [];
     },
     clearMenuData: (state) => {
       state.menuData = [];

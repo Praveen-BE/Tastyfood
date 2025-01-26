@@ -42,12 +42,6 @@ const CatagoryList = ({
 
   const clickEventFirstElement = () => {
     if (firstTitle == "Recommended") {
-      // const button = document.querySelector("#Recommended");
-      // console.log(button);
-      // button.addEventListener("click", function () {
-      //   handleAccordian();
-      // });
-      // button.click();
       setClickCount(clickCount + 1);
     }
   };
@@ -60,15 +54,18 @@ const CatagoryList = ({
     <div id={title}>
       {categories ? (
         <>
-          <div className="menuListSets flex justify-between items-center m-4 px-4 py-1 rounded-xl">
-            <h1 className="text-[3.5rem] font-display font-semibold py-2">
+          <div
+            className="menuListSets flex justify-between items-center 
+          m-4 px-4 py-1 rounded-xl"
+          >
+            <h1 className="text-[3.5rem] lg:text-[2rem] font-display font-semibold py-2">
               {title}
             </h1>
             <div className={classNames({ "rotate-180": showItem })}>
               <>{categories ? "" : <DropDownIocn />}</>
             </div>
           </div>
-          <div className="m-8">
+          <div className="m-0">
             {categories.map((data, index) => (
               <CatagoryList
                 id={data?.card?.card?.title || data?.title}
@@ -93,7 +90,7 @@ const CatagoryList = ({
               "flex justify-between items-center m-4 px-4 py-1 border-2 shadow-xl rounded-xl": true,
             })}
           >
-            <h1 className="text-[3.5rem] font-display font-semibold py-2">
+            <h1 className="text-[3.5rem] lg:text-[2rem] font-display font-semibold py-2">
               {title}
             </h1>
             {categories ? (

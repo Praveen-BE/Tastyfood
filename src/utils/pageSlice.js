@@ -5,6 +5,7 @@ const pageSlice = createSlice({
   initialState: {
     pageNo: 1,
     searchBar: false,
+    searchText: "",
   },
   reducers: {
     addPage: (state, action) => {
@@ -16,8 +17,16 @@ const pageSlice = createSlice({
     closeSearchBar: (state) => {
       state.searchBar = false;
     },
+    updateSearchTextValue: (state, action) => {
+      state.searchText = action.payload;
+    },
   },
 });
 
-export const { addPage, toggleSearchBar, closeSearchBar } = pageSlice.actions;
+export const {
+  addPage,
+  toggleSearchBar,
+  closeSearchBar,
+  updateSearchTextValue,
+} = pageSlice.actions;
 export default pageSlice.reducer;
