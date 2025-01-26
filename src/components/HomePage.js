@@ -18,7 +18,7 @@ const HomePage = () => {
   const searchBar = useSelector((store) => store.page.searchBar);
   const restaurants = useSelector((store) => store.restaurant.restarantList);
   const searchText = useSelector((store) => store.page.searchText);
-
+  const [noMore, setNoMore] = useState(false);
   // console.log(pageNo);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -34,6 +34,7 @@ const HomePage = () => {
 
   const restaurantListFetch = async () => {
     // console.log(pageNo);
+
     const data = await fetch("http://localhost:3333/restuarantList/" + pageNo);
     const json = await data.json();
     // console.log(json);
@@ -47,25 +48,41 @@ const HomePage = () => {
 
   const AddRestroFetch = async (nextpageNo) => {
     // console.log(nextpageNo);
-    const data = await fetch(
-      "http://localhost:3333/restuarantList/" + nextpageNo
-    );
-    const json = await data.json();
-    // console.log(json);
-    const restaurant =
-      json?.data?.success?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants;
-    dispatch(againAddRestaurants(restaurant));
-    if (searchBar) {
-      dispatch(searchRestaurantList(searchText));
+    if (nextpageNo <= 25 && nextpageNo > 0) {
+      const data = await fetch(
+        "http://localhost:3333/restuarantList/" + nextpageNo
+      );
+      const json = await data.json();
+      // console.log(json);
+      const restaurant =
+        json?.data?.success?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants;
+      dispatch(againAddRestaurants(restaurant));
+      if (searchBar) {
+        dispatch(searchRestaurantList(searchText));
+      } else {
+        dispatch(defaultRestarantList());
+      }
+      dispatch(addPage(pageNo + 1));
     } else {
-      dispatch(defaultRestarantList());
+      setNoMore(true);
+      setTimeout(function () {
+        setNoMore(false);
+      }, 2000);
     }
-    dispatch(addPage(pageNo + 1));
   };
 
   return (
     <div className="pb-40">
+      {noMore && (
+        <>
+          <div className="fixed top-[2rem] left-[50%] translate-x-[-50%] z-50 bg-gray-800 rounded-full">
+            <h1 className="bg-[--filterAndSortTextColor] text-white px-10 py-5 font-semibold text-[3rem] rounded-full">
+              Currently Can't Update No More Pages
+            </h1>
+          </div>
+        </>
+      )}
       <FilterAndSortBar />
       <Suspense fallback={<ShimmerResListPage />}>
         <RestaurantListPage />
