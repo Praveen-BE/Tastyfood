@@ -111,21 +111,21 @@ export const ItemCardAdd = (ItemCard) => {
           {stringId in priceObject ? (
             <button
               className="px-0 py-0 absolute 
-            top-[30rem] right-[6.75rem] lg:top-[18rem] lg:right-[5.5rem]
+            top-[30rem] right-[7rem] lg:top-[18rem] lg:right-[5.5rem]
            bg-white text-[--add-text-color] text-[3rem] lg:text-[2rem]
            text-center font-black rounded-3xl border-[--add-text-color] border-2"
             >
               <div className="w-[20rem] lg:w-[18rem] flex justify-between items-center">
                 <div
                   onClick={() => decrease()}
-                  className="mr-0 px-10 py-5 bg-[--primary-text-color] rounded-l-3xl"
+                  className="mr-0 w-[7rem] py-5 bg-[--primary-text-color] rounded-l-3xl"
                 >
                   -
                 </div>
-                <h1 className="w-10">{priceObject[stringId]?.count}</h1>
+                <h1 className="w-[6rem]">{priceObject[stringId]?.count}</h1>
                 <div
                   onClick={() => increase()}
-                  className="ml-0 px-10 py-5 bg-[--primary-text-color] rounded-r-3xl"
+                  className="ml-0 w-[7rem] py-5 flex justify-center bg-[--primary-text-color] rounded-r-3xl"
                 >
                   +
                 </div>
@@ -134,7 +134,7 @@ export const ItemCardAdd = (ItemCard) => {
           ) : (
             <button
               onClick={() => cartAddItem()}
-              className="px-28 py-5 absolute top-[30rem] lg:top-[18rem] right-[6.75rem] lg:right-[5.5rem]
+              className="hover: px-28 py-5 absolute top-[30rem] lg:top-[18rem] right-[6.75rem] lg:right-[5.5rem]
            bg-white text-[--add-text-color] text-[3rem] lg:text-[2rem]
            text-center font-black rounded-3xl border-[--add-text-color] border-2"
             >

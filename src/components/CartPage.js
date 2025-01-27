@@ -6,6 +6,7 @@ import ErrorMinus from "./ErrorMinus";
 import Shimmer from "./Shimmer";
 import { emtyCartItem } from "../utils/cartSlice";
 import { emtpyItemCount } from "../utils/priceSlice";
+import { formatToINR } from "../utils/formatINR";
 
 const CartPage = () => {
   const [messageShow, setMessageShow] = useState(false);
@@ -33,7 +34,7 @@ const CartPage = () => {
       {messageShow && (
         <>
           {" "}
-          <div className="absolute top-[2rem] left-[50%] translate-x-[-50%]">
+          <div className="fixed top-[2rem] left-[50%] translate-x-[-50%]">
             <h1 className="bg-[--filterAndSortTextColor] text-white px-10 py-5 font-semibold text-[3rem] rounded-full">
               Buy Later
             </h1>
@@ -63,7 +64,7 @@ const CartPage = () => {
           {cartItems.length != 0 && (
             <div className="flex flex-col justify-center items-center">
               <h1 className="m-4 text-[3rem] font-display">
-                Total Price : {totalPriceValue} Rs
+                Total Price : {formatToINR(totalPriceValue)} Rs
               </h1>
               <h1
                 onClick={() => functionMessageShow()}

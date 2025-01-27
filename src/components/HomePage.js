@@ -46,7 +46,7 @@ const HomePage = () => {
     dispatch(addPage(pageNo + 1));
   };
 
-  const AddRestroFetch = async (nextpageNo) => {
+  const addRestroFetch = async (nextpageNo) => {
     // console.log(nextpageNo);
     if (nextpageNo <= 25 && nextpageNo > 0) {
       const data = await fetch(
@@ -89,8 +89,8 @@ const HomePage = () => {
       </Suspense>
       <div className="w-full p-2 flex justify-center">
         <h1
-          className="px-6 py-3 pb-5 text-white text-center text-[50px] rounded-[50px] bg-[--filterAndSortTextColor]"
-          onClick={() => AddRestroFetch(pageNo)}
+          className="px-6 py-3 pb-5 lg:pb-3 text-white text-center text-[50px] lg:text-[20px] rounded-[50px] bg-[--filterAndSortTextColor]"
+          onClick={() => addRestroFetch(pageNo)}
         >
           Show More
         </h1>
