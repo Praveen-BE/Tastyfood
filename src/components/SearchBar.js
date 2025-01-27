@@ -41,7 +41,7 @@ const SearchBar = () => {
             placeholder="Search your beloved meals...!"
           />
           <div
-            for="search"
+            htmlFor="search"
             onClick={() => searchUpdate()}
             className="flex justify-center items-center w-[7rem] lg:w-[3rem] border-2 border-gray-600 rounded-r-3xl bg-white"
           >

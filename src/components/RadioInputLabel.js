@@ -12,7 +12,7 @@ const RadioInputLabel = ({ nameValue, labelValue, name }) => {
       />
       <label
         className="ml-4 text-[3rem] lg:text-[2rem] font-display font-bold text-[--primary-text-color] text-center"
-        for={nameValue}
+        htmlFor={nameValue}
       >
         {labelValue}
       </label>

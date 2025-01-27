@@ -6,6 +6,8 @@ export const LocationSymbol = () => {
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      stroke="green"
+      strokeWidth="4"
     >
       <path
         strokeLinecap="round"
@@ -24,6 +26,7 @@ export const ProfileIcon = () => {
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
+      strokeWidth="1"
     >
       <path
         strokeLinecap="round"
@@ -193,6 +196,7 @@ export const SearchIconSVG = () => {
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
+      strokeWidth="1"
     >
       <path
         stroke-linecap="round"

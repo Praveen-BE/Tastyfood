@@ -43,7 +43,7 @@ const CartItemCard = ({ data }) => {
             className="w-[3rem] lg:w-[2rem]"
           />
         </div>
-        <h1 className="text-[2rem] lg:ml-[1rem] w-3/6 lg:text-[1.5rem] overflow-hidden">
+        <h1 className="text-[2rem] lg:ml-[1rem] w-2/6 lg:text-[1.5rem] overflow-hidden">
           {name}
         </h1>
         <div className="flex justify-center items-center w-[15rem]">
@@ -66,11 +66,11 @@ const CartItemCard = ({ data }) => {
         <div className="w-[15rem] flex justify-end">
           {defaultPrice ? (
             <h1 className="text-[2.5rem] lg:text-[2rem]">
-              Rs. {formatToINR((priceObject[id].count * defaultPrice) / 100)}
+              {formatToINR((priceObject[id].count * defaultPrice) / 100)}
             </h1>
           ) : (
             <h1 className="text-[2.5rem]">
-              Rs. {formatToINR((priceObject[id].count * price) / 100)}
+              {formatToINR((priceObject[id].count * price) / 100)}
             </h1>
           )}
         </div>

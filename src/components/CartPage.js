@@ -61,7 +61,7 @@ const CartPage = () => {
           {cartItems.length != 0 && (
             <div className="flex flex-col justify-center items-center">
               <h1 className="m-4 text-[3rem] font-display">
-                Total Price : {formatToINR(totalPriceValue)} Rs
+                Total Price : {formatToINR(totalPriceValue)}
               </h1>
               <h1
                 onClick={() => functionMessageShow()}
@@ -75,7 +75,7 @@ const CartPage = () => {
       </div>
       {cartItems.length != 0 && (
         <>
-          <h1 className="m-0 p-0 text-[4rem] text-center font-display font-bold">
+          <h1 className="m-0 p-0 text-[4rem] bg-slate-600 mb-5 text-center font-display font-bold">
             Items List
           </h1>
           <div className="flex justify-center">
