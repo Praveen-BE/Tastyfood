@@ -46,11 +46,8 @@ const CartPage = () => {
           This Cart is Empty
         </h1>
       ) : (
-        <button
-          onClick={() => clearCart()}
-          className="m-0 p-0 text-[3rem] text-center font-display font-bold"
-        >
-          Clear Cart
+        <button className="m-0 p-0 text-[3rem] text-center font-display font-bold">
+          Card Page
         </button>
       )}
 
