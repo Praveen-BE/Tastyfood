@@ -12,8 +12,10 @@ import {
 } from "../utils/priceSlice";
 import { errorMinusFalse, errorMinusTrue } from "../utils/errorSlice";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import ImageShimmer from "./ImageShimmer";
 
 const ItemCard = (props) => {
+  const [loaded, setLoaded] = useState(false);
   const { data } = props;
   const [more, setMore] = useState(false);
   const { name, defaultPrice, ratings, description, imageId, price } =
@@ -68,10 +70,30 @@ const ItemCard = (props) => {
       <div className="w-6/12 mr-8 pr-4">
         <div className="relative w-full h-[28rem] lg:h-[20rem] overflow-hidden rounded-[3rem]">
           <LazyLoadImage
-            className="w-full absolute"
+            className={classNames({ "w-full absolute": true, hidden: !loaded })}
             src={CDN_URL + imageId}
             alt={name + "Image"}
+            onLoad={() => setLoaded(true)}
+            // onLoad={() => console.log("Hello")}
           />
+          {!loaded && (
+            <div className="w-full h-full flex justify-center items-center animate-pulse rounded-3xl shadow-2xl bg-green-100">
+              <div className=" ">
+                <div
+                  className="absolute left-[1rem] bottom-[1rem] 
+                w-0 h-0 border-l-[6rem] 
+    border-r-[6rem] border-b-[12rem] border-l-transparent 
+    border-r-transparent border-b-red-200"
+                ></div>
+                <div
+                  className="absolute left-[6rem] bottom-[1rem] 
+                w-0 h-0 border-l-[6rem] 
+    border-r-[6rem] border-b-[12rem] border-l-transparent 
+    border-r-transparent border-b-red-200"
+                ></div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

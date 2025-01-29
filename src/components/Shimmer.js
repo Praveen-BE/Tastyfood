@@ -23,8 +23,28 @@ export const ShimmerImageCard = () => {
 export const LineShimmerFull = () => {
   return (
     <>
-      <div className="my-4 w-full lg:w-[98%] h-[3rem] bg-green-50 flex items-center rounded-3xl">
+      <div className="my-4 lg:my-2 w-full lg:w-[98%] h-[3rem] lg:h-[2rem] bg-green-50 flex items-center rounded-3xl">
         <div className="m-5 w-full h-[1rem] ShimmerEffect"></div>
+      </div>
+    </>
+  );
+};
+
+export const RestaurantCardShimmerLine = () => {
+  return (
+    <>
+      <div className="my-5 lg:my-2 w-full lg:w-[98%] h-[3rem] lg:h-[1.5rem] bg-green-50 flex items-center rounded-3xl">
+        <div className="m-5 w-full h-[1rem] lg:h-[0.5rem] ShimmerEffect"></div>
+      </div>
+    </>
+  );
+};
+
+export const RestaurantCardShimmerHalfLine = () => {
+  return (
+    <>
+      <div className="mt-4 lg:mt-2 w-6/12 lg:w-[70%] h-[3rem] lg:h-[1.5rem] bg-green-50 flex items-center rounded-3xl">
+        <div className="m-5 w-full h-[1rem] ShimmerEffectSlow"></div>
       </div>
     </>
   );
@@ -33,7 +53,7 @@ export const LineShimmerFull = () => {
 export const LineShimmerHalf = () => {
   return (
     <>
-      <div className="mt-5 w-6/12 lg:w-[70%] h-[3rem] bg-green-50 flex items-center rounded-3xl">
+      <div className="mt-5 lg:my-2 w-6/12 lg:w-[70%] h-[3rem] lg:h-[2rem] bg-green-50 flex items-center rounded-3xl">
         <div className="m-5 w-full h-[1rem] ShimmerEffectSlow"></div>
       </div>
     </>

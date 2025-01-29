@@ -1,14 +1,18 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { CDN_URL } from "../utils/constant";
 import { StarIcon } from "../utils/useSvgElements";
 import Shimmer from "./Shimmer";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import classNames from "classnames";
+import ImageShimmer from "./ImageShimmer";
+import ShimmerRestaCard from "./ShimmerRestaCard";
 
 const RestaurantCard = (props) => {
+  const [loaded, setLoaded] = useState(false);
   const { resData } = props;
   // console.log(resData);
   if (resData == null || resData == undefined) {
-    return <Shimmer />;
+    return <ShimmerRestaCard />;
   }
   const {
     name,
@@ -20,41 +24,6 @@ const RestaurantCard = (props) => {
     aggregatedDiscountInfoV3,
     areaName,
   } = resData?.info;
-  // useEffect(() => {
-  //   document.addEventListener("DOMContentLoaded", function () {
-  //     // use query selector that matches your class name
-  //     // you may assign it to a variable; we have used literal here
-  //     // to make this example more clear.
-
-  //     const lazyBackgrounds = [].slice.call(
-  //       document.querySelectorAll(".lazy-background")
-  //     );
-
-  //     if ("IntersectionObserver" in window) {
-  //       let lazyBackgroundObserver = new IntersectionObserver(function (
-  //         entries,
-  //         observer
-  //       ) {
-  //         entries.forEach(function (entry) {
-  //           if (entry.isIntersecting) {
-  //             // remove the lazy class name
-  //             // when image enters viewport
-  //             entry.target.classList.remove("lazy-background");
-  //             lazyBackgroundObserver.unobserve(entry.target);
-  //           }
-  //         });
-  //       });
-
-  //       lazyBackgrounds.forEach(function (lazyBackground) {
-  //         lazyBackgroundObserver.observe(lazyBackground);
-  //       });
-  //     } else {
-  //       lazyBackgrounds.forEach(function (entry) {
-  //         entry.classList.remove("lazy-background");
-  //       });
-  //     }
-  //   });
-  // }, []);
   return (
     <div className="">
       <div className="w-[410px] md:w-[350px] lg:w-[160px] overflow-hidden">
@@ -62,25 +31,33 @@ const RestaurantCard = (props) => {
           <div className="absolute m-0 p-0 w-full h-full -z-50"></div>
           <div className="relative flex w-[410px] md:w-[350px] lg:w-[160px] h-[500px] lg:h-[200px] rounded-[50px] pt-4">
             <LazyLoadImage
-              className="w-full rounded-[32px] -z-20"
+              className={classNames({
+                "w-full rounded-[32px] -z-20": true,
+                hidden: !loaded,
+              })}
               src={CDN_URL + cloudinaryImageId}
+              onLoad={() => setLoaded(true)}
+              // onLoad={() => console.log("Hello")}
             />
-            <div className="absolute bottom-0 w-full h-[10rem] lg:h-[6rem] flex items-end bg-gradient-to-t from-black rounded-b-[32px] z-0">
-              {aggregatedDiscountInfoV3 ? (
-                <div className="w-[410px] md:w-[350px] lg:w-[160px]">
-                  <h3 className="ml-4 lg:pl-1 lg:pb-1 font-display text-white text-[50px] lg:text-[1.2rem] font-black w-[410px] lg:w-[170px]">
-                    {aggregatedDiscountInfoV3?.header}
+            {!loaded && <ImageShimmer />}
+            {loaded && (
+              <div className="absolute bottom-0 w-full h-[10rem] lg:h-[6rem] flex items-end bg-gradient-to-t from-black rounded-b-[32px] z-0">
+                {aggregatedDiscountInfoV3 ? (
+                  <div className="w-[410px] md:w-[350px] lg:w-[160px]">
+                    <h3 className="ml-4 lg:pl-1 lg:pb-1 font-display text-white text-[50px] lg:text-[1.2rem] font-black w-[410px] lg:w-[170px]">
+                      {aggregatedDiscountInfoV3?.header}
+                    </h3>
+                    <h3 className="ml-4 lg:pl-1 lg:pb-1 font-display text-white text-[40px] lg:text-[1.4rem] font-black w-[410px] lg:w-[170px]">
+                      {aggregatedDiscountInfoV3?.subHeader}
+                    </h3>
+                  </div>
+                ) : (
+                  <h3 className="ml-4 lg:pl-1 lg:pb-1 font-display text-white text-[40px] lg:text-[1.2rem] font-black w-[410px] lg:w-[170px]">
+                    {costForTwo}
                   </h3>
-                  <h3 className="ml-4 lg:pl-1 lg:pb-1 font-display text-white text-[40px] lg:text-[1.4rem] font-black w-[410px] lg:w-[170px]">
-                    {aggregatedDiscountInfoV3?.subHeader}
-                  </h3>
-                </div>
-              ) : (
-                <h3 className="ml-4 lg:pl-1 lg:pb-1 font-display text-white text-[40px] lg:text-[1.2rem] font-black w-[410px] lg:w-[170px]">
-                  {costForTwo}
-                </h3>
-              )}
-            </div>
+                )}
+              </div>
+            )}
           </div>
 
           <div className="-mt-7 pt-10 lg:pt-7 w-full md:w-[350px]">

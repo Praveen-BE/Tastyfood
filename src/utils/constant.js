@@ -6,3 +6,7 @@ export const color5 = "#FBFBFB";
 
 export const CDN_URL =
   "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";
+
+export const vercelURL = "https://tasty-server-vercel.vercel.app/";
+
+// export const vercelURL = "http://localhost:3333/";

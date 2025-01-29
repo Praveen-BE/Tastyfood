@@ -12,6 +12,7 @@ import {
 } from "../utils/restaurantListSlice";
 import { addPage } from "../utils/pageSlice";
 import ShimmerResListPage from "./ShimmerResListPage";
+import { vercelURL } from "../utils/constant";
 const RestaurantListPage = lazy(() => import("./RestaurantListPage"));
 const HomePage = () => {
   const pageNo = useSelector((store) => store.page.pageNo);
@@ -35,7 +36,7 @@ const HomePage = () => {
   const restaurantListFetch = async () => {
     // console.log(pageNo);
 
-    const data = await fetch("http://localhost:3333/restuarantList/" + pageNo);
+    const data = await fetch(vercelURL + "restuarantList/" + pageNo);
     const json = await data.json();
     // console.log(json);
     const restaurant =
@@ -49,9 +50,7 @@ const HomePage = () => {
   const addRestroFetch = async (nextpageNo) => {
     // console.log(nextpageNo);
     if (nextpageNo <= 25 && nextpageNo > 0) {
-      const data = await fetch(
-        "http://localhost:3333/restuarantList/" + nextpageNo
-      );
+      const data = await fetch(vercelURL + "restuarantList/" + nextpageNo);
       const json = await data.json();
       // console.log(json);
       const restaurant =

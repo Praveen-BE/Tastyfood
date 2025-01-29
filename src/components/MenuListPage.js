@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { addMenuData, addRestaurantName } from "../utils/restaurantMenuSlice";
 import CatagoryList from "./CatagoryList";
 import ShimmerMenuPage from "./ShimmerMenuPage";
+import { vercelURL } from "../utils/constant";
 
 const MenuListPage = () => {
   const [showIndex, setShowIndex] = useState(null);
@@ -21,7 +22,7 @@ const MenuListPage = () => {
   }, []);
 
   const menuListDataFetchAPI = async () => {
-    const data = await fetch("http://localhost:3333/restuarantMenu/" + id);
+    const data = await fetch(vercelURL + "restuarantMenu/" + id);
     const json = await data.json();
     const menuData =
       json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;

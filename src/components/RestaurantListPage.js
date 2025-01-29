@@ -23,13 +23,17 @@ const RestaurantListPage = () => {
       <div className="ml-14 grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-1">
         {restaurantListData.map((data) => (
           <Link
-            className="m-0 w-[410px] md:w-[380px] lg:w-[180px] 
-          flex justify-center items-center rounded-3xl shadow-2xl"
+            className="m-0"
             to={"/menu/" + data?.info?.id}
             key={data?.info?.id}
           >
             <Suspense fallback={<ShimmerRestaCard />}>
-              <RestaurantCard resData={data} />
+              <div
+                className="w-[410px] md:w-[380px] lg:w-[180px] 
+          flex justify-center items-center rounded-3xl shadow-2xl"
+              >
+                <RestaurantCard resData={data} />
+              </div>
             </Suspense>
           </Link>
         ))}
