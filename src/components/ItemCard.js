@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { CDN_URL } from "../utils/constant";
 import classNames from "classnames";
 import { BigStarIcon, StarIcon } from "../utils/useSvgElements";
@@ -14,7 +14,7 @@ import { errorMinusFalse, errorMinusTrue } from "../utils/errorSlice";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import ImageShimmer from "./ImageShimmer";
 
-const ItemCard = (props) => {
+const ItemCard = React.memo((props) => {
   const [loaded, setLoaded] = useState(false);
   const { data } = props;
   const [more, setMore] = useState(false);
@@ -98,19 +98,27 @@ const ItemCard = (props) => {
       </div>
     </div>
   );
-};
+});
 export default ItemCard;
 
 export const ItemCardAdd = (ItemCard) => {
   const dispatch = useDispatch();
   const priceObject = useSelector((store) => store?.price?.itemsPrice);
+  // const priceObject = useRef(priceObjectSubscribe);
+  // useEffect(() => {
+  //   priceObject.current = priceObjectSubscribe;
+  // }, [priceObjectSubscribe]);
   return (props) => {
-    const { data } = props;
+    const memoizedProps = useMemo(() => props, [props]); // This line is waste😒
+    const { data } = memoizedProps;
+    // const { data } = props;
     const { id, defaultPrice, price } = data?.card?.info;
+
     const tempObject = { price: defaultPrice / 100 || price / 100, count: 1 };
     const cartAddItem = () => {
       dispatch(addCartItem(data));
       dispatch(addItemAndPriceAndCount({ key: id, value: tempObject }));
+      // priceObject.current = priceObjectSubscribe;
     };
     const stringId = id.toString();
     const decrease = () => {
@@ -129,7 +137,7 @@ export const ItemCardAdd = (ItemCard) => {
     return (
       <div>
         <div className="relative border-2 border-[--bottom-border-color]">
-          <ItemCard {...props} />
+          <ItemCard {...memoizedProps} />
           {stringId in priceObject ? (
             <button
               className="px-0 py-0 absolute 

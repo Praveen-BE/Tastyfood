@@ -35,6 +35,7 @@ const HomePage = () => {
 
   const restaurantListFetch = async () => {
     // console.log(pageNo);
+    // console.log(vercelURL);
 
     const data = await fetch(vercelURL + "restuarantList/" + pageNo);
     const json = await data.json();

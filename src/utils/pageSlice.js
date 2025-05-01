@@ -6,6 +6,7 @@ const pageSlice = createSlice({
     pageNo: 1,
     searchBar: false,
     searchText: "",
+    cupColor: "#1C274C",
   },
   reducers: {
     addPage: (state, action) => {
@@ -20,6 +21,9 @@ const pageSlice = createSlice({
     updateSearchTextValue: (state, action) => {
       state.searchText = action.payload;
     },
+    updateSubscriptionType: (state, action) => {
+      state.cupColor = action.payload ? "#def245" : "#1C274C";
+    },
   },
 });
 
@@ -28,5 +32,6 @@ export const {
   toggleSearchBar,
   closeSearchBar,
   updateSearchTextValue,
+  updateSubscriptionType,
 } = pageSlice.actions;
 export default pageSlice.reducer;

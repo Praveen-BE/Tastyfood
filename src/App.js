@@ -14,9 +14,12 @@ import {
   RouterProvider,
   Routes,
 } from "react-router-dom";
-import CartPage from "./components/CartPage.js";
+// import CartPage from "./components/CartPage.js";
 import ShimmerMenuPage from "./components/ShimmerMenuPage.js";
 import ShimmerResListPage from "./components/ShimmerResListPage.js";
+import Subcription from "./components/Subcription.js";
+import RulesAndPrivacy from "./components/RulesAndPrivacy.js";
+import Login from "./components/Login.js";
 const MenuListPage = lazy(() => import("./components/MenuListPage"));
 const CartPage = lazy(() => import("./components/CartPage.js"));
 
@@ -48,6 +51,30 @@ const App = () => {
             element: (
               <Suspense fallback={<ShimmerMenuPage />}>
                 <CartPage />
+              </Suspense>
+            ),
+          },
+          {
+            path: "/subscription",
+            element: (
+              <Suspense fallback={<ShimmerMenuPage />}>
+                <Subcription />
+              </Suspense>
+            ),
+          },
+          {
+            path: "/rules",
+            element: (
+              <Suspense fallback={<ShimmerMenuPage />}>
+                <RulesAndPrivacy />
+              </Suspense>
+            ),
+          },
+          {
+            path: "/profile",
+            element: (
+              <Suspense fallback={<ShimmerMenuPage />}>
+                <Login />
               </Suspense>
             ),
           },

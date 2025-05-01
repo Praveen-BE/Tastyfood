@@ -5,6 +5,7 @@ import pageReducer from "./pageSlice";
 import cartReducer from "./cartSlice";
 import errorReducer from "./errorSlice";
 import priceReducer from "./priceSlice";
+import userReducer from "./userSlice";
 const appStore = configureStore({
   reducer: {
     restaurant: restaurantListReducer,
@@ -13,6 +14,7 @@ const appStore = configureStore({
     cart: cartReducer,
     error: errorReducer,
     price: priceReducer,
+    user: userReducer,
   },
 });
 
